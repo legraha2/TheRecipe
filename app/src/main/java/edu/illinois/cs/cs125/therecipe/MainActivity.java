@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
             text.setText("");
         }
         if(v.getId()==R.id.randomButton) {
-            JsonReader;
+            text.setText("");
         }
 
     }
