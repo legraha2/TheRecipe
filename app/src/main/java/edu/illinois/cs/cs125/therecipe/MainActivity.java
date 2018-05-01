@@ -12,12 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
@@ -32,16 +26,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends Activity {
-    private static final String TAG = "USETHISTheRecipe:Main";
+    private static final String TAG = "TheRecipe:Main";
     private static RequestQueue requestQueue;
 
     Button newButton, saveButton, openButton;
@@ -65,10 +52,11 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(final View v) {
                 Log.d(TAG, "Start API button clicked");
-                text.setText(getName("{\"meals\":[{\"idMeal\":\"52813\",\"strMeal\":\"Kentucky Fried Chicken\",\"strCategory\":\"Chicken\",\"strArea\":\"American\",\"strInstructions\":\"Preheat fryer to 350\\u00b0F. Thoroughly mix together all the spice mix ingredients.\\r\\nCombine spice mix with flour, brown sugar and salt.\\r\\nDip chicken pieces in egg white to lightly coat them, then transfer to flour mixture. Turn a few times and make sure the flour mix is really stuck to the chicken. Repeat with all the chicken pieces.\\r\\nLet chicken pieces rest for 5 minutes so crust has a chance to dry a bit.\\r\\nFry chicken in batches. Breasts and wings should take 12-14 minutes, and legs and thighs will need a few more minutes. Chicken pieces are done when a meat thermometer inserted into the thickest part reads 165\\u00b0F.\\r\\nLet chicken drain on a few paper towels when it comes out of the fryer. Serve hot.\",\"strMealThumb\":\"https:\\/\\/www.themealdb.com\\/images\\/media\\/meals\\/xqusqy1487348868.jpg\",\"strTags\":\"Meat\",\"strYoutube\":\"https:\\/\\/www.youtube.com\\/watch?v=PTUxCvCz8Bc\",\"strIngredient1\":\"Chicken\",\"strIngredient2\":\"Oil\",\"strIngredient3\":\"Egg White\",\"strIngredient4\":\"Flour\",\"strIngredient5\":\"Brown Sugar\",\"strIngredient6\":\"Salt\",\"strIngredient7\":\"paprika\",\"strIngredient8\":\"onion salt\",\"strIngredient9\":\"chili powder\",\"strIngredient10\":\"black pepper\",\"strIngredient11\":\"celery salt\",\"strIngredient12\":\"sage\",\"strIngredient13\":\"garlic powder\",\"strIngredient14\":\"allspice\",\"strIngredient15\":\"oregano\",\"strIngredient16\":\"basil\",\"strIngredient17\":\"marjoram\",\"strIngredient18\":\"\",\"strIngredient19\":\"\",\"strIngredient20\":\"\",\"strMeasure1\":\"1 whole\",\"strMeasure2\":\"2 quarts neutral frying\",\"strMeasure3\":\"1\",\"strMeasure4\":\"1 1\\/2 cups \",\"strMeasure5\":\"1 tablespoon\",\"strMeasure6\":\"1 tablespoon\",\"strMeasure7\":\"1 tablespoon\",\"strMeasure8\":\"2 teaspoons\",\"strMeasure9\":\"1 teaspoon\",\"strMeasure10\":\"1 teaspoon\",\"strMeasure11\":\"1\\/2 teaspoon\",\"strMeasure12\":\"1\\/2 teaspoon\",\"strMeasure13\":\"1\\/2 teaspoon\",\"strMeasure14\":\"1\\/2 teaspoon\",\"strMeasure15\":\"1\\/2 teaspoon\",\"strMeasure16\":\"1\\/2 teaspoon\",\"strMeasure17\":\"1\\/2 teaspoon\",\"strMeasure18\":\"\",\"strMeasure19\":\"\",\"strMeasure20\":\"\",\"strSource\":\"http:\\/\\/www.tablespoon.com\\/recipes\\/copycat-kfc-original-style-chicken\\/97c93d14-9d8c-4bc7-96dc-1e0b37e4fcaa\",\"dateModified\":null}]}"));
+                startAPIcall();
             }
         });
     }
+
 
     public static String getName(final String json) {
         JsonParser parser = new JsonParser();
@@ -142,7 +130,7 @@ public class MainActivity extends Activity {
                                 if (text == null) {
                                     Log.d(TAG, "Null pointer.");
                                 } else {
-                                    text.setText(response.toString());
+                                    text.setText(getName(response.toString()));
                                 }
                             }
                         }
